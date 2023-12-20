@@ -13,14 +13,12 @@ const contactsData = [
 export class App extends Component{
   state = {
     contacts: contactsData,
-    filter: '',
-    name: '',
-    number: ''
+    filter: ''
   };
   
   handleAddProfile = formData => {
     const existingContact = this.state.contacts.find(
-      contact => contact.name === formData.name.toLowerCase()
+      contact => contact.name.toLowerCase() === formData.name.toLowerCase()
     );
   
     if (existingContact) {
@@ -51,13 +49,19 @@ export class App extends Component{
     this.setState({ filter: searchName });
   };
 
+  getFiltedContact = (event) => {
+    this.setState({ filter: event.target.value });
+  };
 
+  filterContacts = () => {
+    return this.state.contacts.filter((contact) =>
+      contact.name.toLowerCase().includes(this.state.filter.toLowerCase())
+    );
+  };
     
 
   render(){
-    const filteredContacts = this.state.contacts.filter(contact =>
-      contact.name.toLowerCase().includes(this.state.filter.toLowerCase())
-    );
+    const filteredContacts = this.filterContacts();
     return(
       
 

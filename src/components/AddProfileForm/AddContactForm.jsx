@@ -2,12 +2,6 @@ import React, { Component } from "react";
 import css from './AddContactForm.module.css'
 
 export class AddContactForm extends Component {
-    state = {
-        contacts: [],
-        name: '',
-        number: ''
-    }
-
   handleEventSubmit = event => {
     event.preventDefault();
 
