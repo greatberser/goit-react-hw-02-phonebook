@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { AddContactForm } from 'components/AddProfileForm/AddContactForm'
 import { ContactList } from 'components/ContactList/ContactList'
+import { Filter } from 'components/Filter/Filter'
 
 const contactsData = [
   {id: 'id-1', name: 'Rosie Simpson', number: '459-12-56'},
@@ -19,7 +20,7 @@ export class App extends Component{
   
   handleAddProfile = formData => {
     const existingContact = this.state.contacts.find(
-      contact => contact.name === formData.name
+      contact => contact.name === formData.name.toLowerCase()
     );
   
     if (existingContact) {
@@ -64,15 +65,8 @@ export class App extends Component{
         <h2>Phonebook</h2>
         <AddContactForm handleAddProfile={this.handleAddProfile}/>
 
-        <div>
-          <p>Find Contacts by name:</p>
-          <input
-            value={this.state.filter}
-            onChange={this.handleInputFilter}
-            type="text"
-            placeholder="Input name"
-          />
-        </div>
+          <h2>Contacts</h2>
+          <Filter filter={this.state.filter} handleInputFilter={this.handleInputFilter} />
 
         {filteredContacts.length > 0 && (
           <ContactList 

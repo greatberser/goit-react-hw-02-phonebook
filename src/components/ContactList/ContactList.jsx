@@ -4,12 +4,10 @@ import css from './ContactList.module.css'
 
 export const ContactList = ({ 
     contacts, 
-    title = '', 
     handleProfileDelete 
 }) => {
   return (
     <div className={css.container}>
-      {title && <h2>{title}</h2>}
       <ul className={css.list}>
         {contacts && contacts.length > 0 ? (
           contacts.map(contact => (
